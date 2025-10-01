@@ -6,9 +6,13 @@
 ```
 go-redis
 ├─ base-opt
-├─ MQ-BaseRedis
+├─ redismq
+├─ go.mod
+├─ go.sum
+├─ main.go
 └─ README.md
 ```
 ## 结构说明
 - base-opt: 关于基础操作的代码。
-- MQ-BaseRedis: 设想通过 `Redis` 实现消息队列功能。
+- redismq: 设想通过 `Redis` 实现消息队列功能。
+- go.mod, go.sum, main.go: `redismq` 的测试代码。
