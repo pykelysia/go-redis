@@ -18,7 +18,7 @@ func DefultClient() *PSubClient {
 	}
 }
 
-func NewClient(options *Options) *PSubClient {
+func NewPSubClient(options *Options) *PSubClient {
 	return &PSubClient{
 		Client: Client{
 			ctx:    context.Background(),
