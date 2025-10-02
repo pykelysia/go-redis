@@ -23,7 +23,7 @@ type (
 		Client
 	}
 
-	HandlerFunc func(string, ...string) bool
+	HandlerFunc func(string, string) bool
 
 	Options redis.Options
 

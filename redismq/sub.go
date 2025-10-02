@@ -20,3 +20,19 @@ func (client *PSubClient) Subscribe(channel string, handler HandlerFunc) error {
 	}
 	return nil
 }
+
+func (client *CptClient) Subscribe(channel string, handler HandlerFunc) error {
+	redisClient := client.client
+	for {
+		msg, err := redisClient.BRPop(client.ctx, 0, channel).Result()
+		if err != nil {
+			Logger(fmt.Sprintf("ReceiveMessage Error: %v", err))
+			return err
+		}
+		flag := handler(msg[0], msg[1])
+		if !flag {
+			break
+		}
+	}
+	return nil
+}
