@@ -2,7 +2,7 @@ package redismq
 
 import "fmt"
 
-func (client *Client) Subscribe(channel string, handler HandlerFunc) error {
+func (client *PSubClient) Subscribe(channel string, handler HandlerFunc) error {
 	redisClient := client.client
 	pubsub := redisClient.Subscribe(client.ctx, channel)
 	defer pubsub.Close()

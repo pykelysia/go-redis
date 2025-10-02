@@ -8,18 +8,27 @@ import (
 
 type (
 	Client struct {
-		ctx    context.Context // 上下文
-		client *redis.Client   // Redis 客户端
+		// 上下文
+		ctx context.Context
+
+		// Redis 客户端
+		client *redis.Client
+	}
+
+	PSubClient struct {
+		Client
+	}
+
+	CptClient struct {
+		Client
 	}
 
 	HandlerFunc func(string, ...string) bool
-)
 
-func DefultClient() *Client {
-	return &Client{
-		ctx: context.Background(),
-		client: redis.NewClient(&redis.Options{
-			Addr: "localhost:6379",
-		}),
+	Options redis.Options
+
+	ClientFunc interface {
+		Publish(channel string, message interface{}) error
+		Subscribe(channel string, handler HandlerFunc) error
 	}
-}
+)
